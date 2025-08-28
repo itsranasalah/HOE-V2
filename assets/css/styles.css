@@ -289,3 +289,46 @@ body[data-page="today"]    main.container > .card      { margin-top:0; }
 /* ===================== 18) SAFETY: NO HORIZONTAL SCROLL ===================== */
 html, body { overflow-x:hidden; }
 img, canvas, svg, video { max-width:100%; height:auto; }
+
+/* ===== MOBILE “HARD LOCK” FOR HOME (wins last) ===== */
+@media (max-width: 600px){
+  /* eliminate any auto zoom / reflow quirks */
+  html, body { overflow-x: hidden; -webkit-text-size-adjust: 100%; }
+
+  /* Home hero stacks; never re-expand horizontally */
+  body[data-page="home"] .hero{
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 16px !important;
+    gap: 12px !important;
+  }
+  body[data-page="home"] .hero .lead{ font-size: 15px !important; }
+
+  /* Snapshots → single column */
+  .snapshots-grid{ grid-template-columns: 1fr !important; gap: 12px !important; }
+  .snapshot-card{ padding: 14px !important; }
+  .snapshot-value{ font-size: 28px !important; }
+
+  /* Mini-timeline → one card per viewport, no page stretch */
+  .mini-timeline{ overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+  .mini-tl{ gap: 12px !important; padding: 2px 0 !important; margin: 0 !important; overflow: visible !important; }
+  .mini-tl-item{
+    width: 88vw !important; max-width: 90vw !important; min-width: 72vw !important;
+    padding: 10px !important; border-radius: 12px !important; flex: 0 0 auto !important;
+  }
+
+  /* ISPs → single column */
+  .isp-grid{ grid-template-columns: 1fr !important; gap: 12px !important; }
+  .isp-card{ padding: 12px !important; }
+  .isp-logo{ --logo-size: 40px; }
+
+  /* Footer breathing room */
+  main.container > :last-child{ margin-bottom: 0 !important; }
+}
+
+/* ===== SAFETY: remove ANY stray global grid override that might be elsewhere ===== */
+@media (max-width: 960px){
+  /* if a .grid rule exists in another file, neutralize it here */
+  .grid[style],
+  .grid{ grid-template-columns: revert-layer !important; }
+}
