@@ -256,3 +256,68 @@ body[data-page="today"]    main.container > .card      { margin-top:0; }
   .chart-box.small{ height:240px; }
 
   .tl-grid{ grid-template-columns:1fr;
+
+/* ===================== MOBILE HARDENING (Home) ===================== */
+/* Never let any element force horizontal scroll on phones */
+html, body { overflow-x: hidden; }
+img, canvas, svg, video { max-width:100%; height:auto; }
+
+/* iOS sometimes reflows when any .grid is globally overridden.
+   We ONLY target the exact Home sections below. */
+@media (max-width: 600px){
+
+  /* Compact spacing + type scale */
+  :root{ --gap:16px; --radius:14px; --radius-sm:10px; }
+  .container{ padding:16px; }
+  main.container{ padding-top:16px; padding-bottom:16px; }
+  h1{ font-size:30px; line-height:1.15; margin:16px 0 10px; }
+  h2{ font-size:20px; }
+  h3{ font-size:16px; }
+  .card{ padding:16px; border-radius:14px; }
+
+  /* --- Home: hero --- */
+  body[data-page="home"] .hero{
+    padding:16px;
+    gap:12px;
+    flex-direction:column;           /* stack headline + ctas */
+    align-items:flex-start;
+  }
+  body[data-page="home"] .hero .lead{ font-size:15px; margin:6px 0 10px; }
+  body[data-page="home"] .cta-row{ gap:8px; }
+  body[data-page="home"] .cta{ padding:8px 12px; border-radius:8px; }
+
+  /* --- Home: snapshots → 1 column --- */
+  .snapshots-grid{ grid-template-columns:1fr; gap:12px; }
+  .snapshot-card{ padding:14px; }
+  .snapshot-value{ font-size:28px; }
+
+  /* --- Home: mini timeline — single-card viewport, no page stretch --- */
+  .mini-timeline{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .mini-tl{
+    gap:12px; padding:2px 0; margin:0;
+    /* prevent children shadows from causing a horizontal scrollbar */
+    overflow:visible;
+  }
+  .mini-tl-item{
+    /* show ~one card per viewport; NEVER expand page width */
+    width:88vw; max-width:520px; min-width:72vw;
+    padding:10px; border-radius:12px;
+    flex:0 0 auto;               /* keep them horizontal */
+  }
+  .mini-tl-item .pill{ font-size:13px; }
+
+  /* --- Home: ISP grid → 1 column --- */
+  .isp-grid{ grid-template-columns:1fr; gap:12px; }
+  .isp-card{ padding:12px; }
+  .isp-logo{ --logo-size:40px; }
+
+  /* Footer breathing room on all pages */
+  main.container > :last-child{ margin-bottom:0; }
+}
+
+/* ========== EXTRA SAFETY at very small screens (≤ 380px) ========== */
+@media (max-width: 380px){
+  h1{ font-size:28px; }
+  body[data-page="home"] .cta{ font-size:14px; padding:7px 10px; }
+  .mini-tl-item{ width:92vw; min-width:78vw; }
+}
