@@ -339,3 +339,45 @@ body[data-page="today"]    main.container > .card      { margin-top:0; }
 /* ===================== 18) SAFETY: NO HORIZONTAL SCROLL ===================== */
 html, body { overflow-x:hidden; }
 img, canvas, svg, video { max-width:100%; height:auto; }
+
+/* ===== FINAL MOBILE LOCK (HOME) ===== */
+html { -webkit-text-size-adjust: 100%; }  /* stop iOS auto-zoom */
+
+@media (max-width: 600px){
+  html, body { overflow-x: hidden; }
+
+  /* Home hero: stack and shrink paddings */
+  body[data-page="home"] .hero{
+    display:flex;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    gap:12px !important;
+    padding:16px !important;
+  }
+  body[data-page="home"] .hero .lead{ font-size:15px !important; }
+
+  /* Snapshots → one column */
+  .snapshots-grid{ grid-template-columns:1fr !important; gap:12px !important; }
+  .snapshot-card{ padding:14px !important; }
+  .snapshot-value{ font-size:28px !important; }
+
+  /* Mini timeline: one card per viewport; no page stretch */
+  .mini-timeline{ overflow-x:auto !important; -webkit-overflow-scrolling:touch; }
+  .mini-tl{ display:flex; gap:12px !important; padding:2px 0 !important; margin:0 !important; }
+  .mini-tl-item{
+    flex:0 0 auto !important;
+    width:88vw !important; max-width:90vw !important; min-width:72vw !important;
+    padding:10px !important; border-radius:12px !important;
+  }
+  .mini-tl-item .pill{ font-size:13px !important; }
+
+  /* ISPs → one column */
+  .isp-grid{ grid-template-columns:1fr !important; gap:12px !important; }
+  .isp-card{ padding:12px !important; }
+  .isp-logo{ --logo-size:40px; }
+
+  /* Bottom space same as top */
+  main.container{ padding-bottom:16px !important; }
+  main.container > :last-child{ margin-bottom:0 !important; }
+}
+
