@@ -380,4 +380,22 @@ html { -webkit-text-size-adjust: 100%; }  /* stop iOS auto-zoom */
   main.container{ padding-bottom:16px !important; }
   main.container > :last-child{ margin-bottom:0 !important; }
 }
+/* --- Fix: keep nav single-line and hide ticker on phones (Chrome iOS included) --- */
+header.navbar .container{
+  flex-wrap: nowrap;          /* don’t allow wrapping */
+  min-height: 56px;           /* stable bar height */
+  overflow: hidden;           /* ticker text can’t push height */
+}
+
+header.navbar a{ white-space: nowrap; }  /* links never break */
+
+/* Hide ticker on any touch phone/tablet, regardless of the reported width */
+@media (hover:none) and (pointer:coarse){
+  .nav-ticker{ display:none !important; }
+}
+
+/* Also hide it for medium screens where space is tight */
+@media (max-width:1200px){
+  .nav-ticker{ display:none !important; }
+}
 
