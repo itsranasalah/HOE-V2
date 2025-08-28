@@ -47,7 +47,7 @@ header.navbar{ background:var(--bg); color:#fff; }
 h1{ font-size:44px; line-height:1.1; margin:28px 0 18px; font-weight:800; letter-spacing:-.5px; }
 h2{ font-size:24px; margin:0 0 8px; }
 h3{ font-size:18px; margin:0 0 10px; }
-.sr-only{ position:absolute; left:-9999px; }
+.sr-only{ position:absolute; left:-9999px; } /* screen-reader-only helper */
 
 /* ===================== 5) GENERIC CARD + GRID ===================== */
 .grid{ display:grid; grid-template-columns:1.2fr 1fr; gap:var(--gap); }
@@ -65,6 +65,8 @@ h3{ font-size:18px; margin:0 0 10px; }
 }
 .isp-name{ margin:0 0 6px; font-weight:700; }
 .isp-speed,.isp-price{ margin:0; color:#4a4f57; font-size:14px; }
+
+/* Circular logo badge (with brand-specific scaling tweaks) */
 .isp-logo{
   --logo-size:44px; position:relative; width:var(--logo-size); height:var(--logo-size);
   border-radius:999px; background:#fff; border:1px solid var(--line);
@@ -86,12 +88,12 @@ h3{ font-size:18px; margin:0 0 10px; }
 a:focus,button:focus,[tabindex]:focus{ outline:3px solid var(--accent-gold); outline-offset:2px; }
 .card:hover{ transform:translateY(-1px); box-shadow:0 10px 28px rgba(0,0,0,.14); }
 
-/* ===================== 8) CHART SIZING ===================== */
+/* ===================== 8) CHART SIZING (shared) ===================== */
 .chart-box{ position:relative; width:100%; height:300px; }
 #usersChart{ width:100% !important; height:100% !important; display:block; }
 @media (max-width:960px){ .chart-box{ height:260px; } }
 
-/* ===================== 9) EGYPTIAN THEME ===================== */
+/* ===================== 9) EGYPTIAN THEME (always on) ===================== */
 body.theme-egypt{
   --accent-red:#ce1126; --accent-gold:#c9a227; --panel:#fffdf7; --line:#efe7cf;
   background:
@@ -116,20 +118,25 @@ body.theme-egypt .timeline-line{ background:var(--accent-red); }
 }
 body.theme-egypt footer.flag{ border-top:2px solid rgba(201,162,39,.35); }
 
-/* ===================== 10) GROWTH PAGE ===================== */
-.two-col{ display:grid; grid-template-columns:1fr 1fr; gap:var(--gap); margin-top:var(--gap); }
+/* ===================== 10) GROWTH PAGE LAYOUT ===================== */
+.two-col{
+  display:grid; grid-template-columns:1fr 1fr; gap:var(--gap);
+  margin-top:var(--gap);
+}
 .stats-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
 @media (max-width:960px){ .stats-grid{ grid-template-columns:repeat(2,1fr); } }
 .stat-card{ border:1px solid var(--line); border-radius:12px; padding:16px; background:#fff; display:flex; flex-direction:column; gap:4px; }
 .stat-value{ font-size:36px; line-height:1; font-weight:800; color:#101113; }
 .stat-label{ font-weight:700; color:#2b2e33; }
 .stat-caption{ margin:0; color:#4a4f57; font-size:14px; }
+
 .facts-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
 @media (max-width:960px){ .facts-grid{ grid-template-columns:1fr; } }
 .fact-card{ display:flex; gap:12px; align-items:flex-start; border:1px solid var(--line); border-radius:12px; padding:14px; background:#fff; }
 .fact-dot{ width:10px; height:10px; border-radius:50%; background:var(--accent-red); margin-top:7px; }
 .fact-title{ margin:0 0 6px; font-size:16px; font-weight:800; }
 .fact-text{ margin:0; color:#4a4f57; font-size:14px; }
+
 .chart-box.small{ height:260px; }
 @media (max-width:960px){
   .two-col{ grid-template-columns:1fr; }
@@ -142,24 +149,38 @@ body[data-page="growth"] .two-col{ margin-top:0; }
 body[data-page="growth"] .two-col .card{ margin:0; }
 
 /* ===================== 11) HOME PAGE ===================== */
-.hero{ display:flex; align-items:center; justify-content:space-between; gap:24px; padding:28px 28px 26px; }
+.hero{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:24px; padding:28px 28px 26px;
+}
 .hero .lead{ margin:8px 0 16px; color:#2a2d32; font-size:18px; }
 .cta-row{ display:flex; gap:12px; flex-wrap:wrap; }
 .cta{ display:inline-block; padding:10px 14px; border-radius:10px; background:var(--accent-red); color:#fff; text-decoration:none; font-weight:700; }
 .cta.ghost{ background:#fff; color:#101113; border:1px solid var(--line); }
+
 .snapshots-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
 @media (max-width:960px){ .snapshots-grid{ grid-template-columns:1fr; } }
 .snapshot-card{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px; }
 .snapshot-value{ font-size:34px; line-height:1; font-weight:800; color:#101113; }
 .snapshot-label{ font-weight:700; color:#2b2e33; margin-top:6px; }
 .snapshot-caption{ margin:6px 0 0; color:#4a4f57; font-size:14px; }
+
 .mini-timeline{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
 .mini-tl{ display:flex; gap:16px; padding:4px 2px; margin:0; list-style:none; }
-.mini-tl-item{ min-width:280px; max-width:320px; border:1px solid var(--line); border-radius:12px; background:#fff; padding:12px; }
-.mini-tl-item .pill{ display:inline-block; font-weight:800; font-size:14px; padding:.25rem .55rem; border:2px solid var(--accent-gold); border-radius:999px; background:#fff7df; color:#533f05; margin-bottom:6px; }
+.mini-tl-item{
+  min-width:280px; max-width:320px; border:1px solid var(--line);
+  border-radius:12px; background:#fff; padding:12px;
+}
+.mini-tl-item .pill{
+  display:inline-block; font-weight:800; font-size:14px;
+  padding:.25rem .55rem; border:2px solid var(--accent-gold);
+  border-radius:999px; background:#fff7df; color:#533f05; margin-bottom:6px;
+}
 .mini-tl-title{ display:block; font-weight:800; margin-bottom:4px; }
 .mini-tl-text{ color:#4a4f57; font-size:14px; }
-body[data-page="home"] main.container > .hero.card { margin-top:var(--gap); }
+
+/* Keep hero flush at the top on Home */
+body[data-page="home"] main.container > .hero.card { margin-top:0; }
 body[data-page="home"] main.container > :first-child{ margin-top:0; }
 
 /* ===================== 12) TIMELINE ===================== */
@@ -172,22 +193,31 @@ body[data-page="home"] main.container > :first-child{ margin-top:0; }
   transition:transform .15s ease, box-shadow .15s ease;
 }
 .tl-grid .ms-card:hover{ transform:translateY(-2px); box-shadow:0 12px 30px rgba(0,0,0,.14); }
-.tl-grid .pill{ display:inline-block; font-weight:800; font-size:14px; padding:.25rem .55rem; border:2px solid var(--accent-gold); border-radius:999px; background:#fff7df; color:#533f05; margin-bottom:8px; }
+.tl-grid .pill{
+  display:inline-block; font-weight:800; font-size:14px;
+  padding:.25rem .55rem; border:2px solid var(--accent-gold);
+  border-radius:999px; background:#fff7df; color:#533f05; margin-bottom:8px;
+}
 .tl-grid .ms-title{ margin:0 0 6px; font-weight:800; font-size:18px; }
 .tl-grid .ms-text{ margin:0; color:#4a4f57; line-height:1.6; }
 
 /* ===================== 13) TODAY PAGE ===================== */
 .article{ padding:26px 26px 22px; }
 .article-head .dek{ margin:8px 0 0; color:#2a2d32; font-size:18px; }
-.at-a-glance{ margin:18px 0 22px; border:1px solid var(--line); background:#fff; border-radius:12px; padding:14px 16px; }
+.at-a-glance{
+  margin:18px 0 22px; border:1px solid var(--line); background:#fff;
+  border-radius:12px; padding:14px 16px;
+}
 .at-a-glance h3{ margin:0 0 8px; font-size:16px; font-weight:800; }
 .at-a-glance ul{ margin:0; padding-left:18px; }
 .article section{ margin-top:18px; }
 .article .bullets{ padding-left:18px; }
 .article .note{ color:#4a4f57; }
+
 .sources .note{ color:#4a4f57; margin:0 0 8px; }
 .sources-list{ margin:0; padding-left:18px; }
 .sources-list li + li{ margin-top:8px; }
+
 body[data-page="today"] main.container > .card{ margin-top:var(--gap); }
 body[data-page="today"] main.container > :first-child{ margin-top:0; }
 
@@ -204,14 +234,12 @@ body[data-page="today"] main.container > :first-child{ margin-top:0; }
 @media (max-width:900px){ .nav-ticker{ display:none; } }
 @media (max-width:1100px){ .navbar .container{ gap:20px; } }
 
-/* ===================== 15) SPACING ===================== */
+/* ===================== 15) GLOBAL PAGE SPACING ===================== */
 main.container{ padding-top:24px; padding-bottom:24px; }
+/* NEW: consistent vertical rhythm on *all* pages */
+main.container > * + *{ margin-top:var(--gap); }
 main.container > :first-child{ margin-top:0; }
 main.container > :last-child{ margin-bottom:0; }
-body[data-page="home"]     main.container > .hero.card { margin-top:0; }
-body[data-page="growth"]   main.container > .two-col   { margin-top:0; }
-body[data-page="timeline"] main.container > .tl-grid   { margin-top:0; }
-body[data-page="today"]    main.container > .card      { margin-top:0; }
 
 /* ===================== 16) MOBILE (≤600px) ===================== */
 @media (max-width:600px){
@@ -225,14 +253,17 @@ body[data-page="today"]    main.container > .card      { margin-top:0; }
   h2{ font-size:20px; }
   h3{ font-size:16px; }
 
-  /* Home: stack hero */
+  /* Home: stack hero + full-width CTAs */
   body[data-page="home"] .hero{ display:block; padding:16px; }
   body[data-page="home"] .hero .lead{ font-size:15px; margin:6px 0 12px; }
   body[data-page="home"] .cta-row{ display:grid; grid-template-columns:1fr; gap:8px; }
   body[data-page="home"] .cta{ width:100%; text-align:center; }
+
   .snapshots-grid{ grid-template-columns:1fr; gap:12px; }
   .snapshot-card{ padding:14px; }
   .snapshot-value{ font-size:24px; }
+
+  /* Mini timeline becomes vertical stack */
   .mini-timeline{ overflow:visible; }
   .mini-tl{ display:grid; grid-template-columns:1fr; gap:12px; padding:0; margin:0; }
   .mini-tl-item{ width:100%; max-width:100%; min-width:0; padding:12px; border-radius:12px; }
@@ -266,13 +297,13 @@ html { -webkit-text-size-adjust: 100%; }
 @media (min-width:901px){
   /* Put links on the left, ticker on the far right, keep underline free */
   header.navbar .container{
-    display:flex;               /* explicit to override any inherited styles */
+    display:flex;
     align-items:center;
-    justify-content:flex-start; /* links stay left-aligned */
+    justify-content:flex-start;
     gap:28px;
     position:relative;
-    flex-wrap:nowrap;           /* keep a single row */
-    overflow:visible;           /* allow sliding underline to move */
+    flex-wrap:nowrap;
+    overflow:visible;
     min-height:56px;
   }
 
@@ -280,7 +311,7 @@ html { -webkit-text-size-adjust: 100%; }
   .navbar a{ order:1; }
   .nav-ticker{
     order:2;
-    margin-left:auto;           /* push ticker to the right edge */
+    margin-left:auto;
     display:flex !important;
   }
 }
@@ -293,15 +324,13 @@ html { -webkit-text-size-adjust: 100%; }
   .nav-ticker{ display:none !important; }
 }
 
-/* Make sure the sliding underline isn’t clipped and sits above the bar */
+/* Keep the sliding underline above the bar */
 .nav-underline{ z-index:1; }
 
-/* ===== TIMELINE GRID FIX ===== */
-/* Some builds render the timeline as a UL. Remove bullets and force grid. */
+/* ===== TIMELINE GRID FIX (if rendered as UL) ===== */
 .tl-grid{
   display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap);
   list-style:none; padding-left:0; margin:0;
 }
 @media (max-width:1200px){ .tl-grid{ grid-template-columns:repeat(2,1fr); } }
 @media (max-width:760px){  .tl-grid{ grid-template-columns:1fr; } }
-
