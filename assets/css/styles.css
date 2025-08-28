@@ -186,3 +186,61 @@ body[data-page="growth"] .two-col .card{ margin:0; }
 body[data-page="home"] main.container > .card,
 body[data-page="home"] main.container > .hero.card{ margin-top:var(--gap); }
 body[data-page="home"] main.container >
+
+/* ===== HOME: match Timeline/Growth/Today on phones (≤600px) ===== */
+@media (max-width:600px){
+
+  /* 1) Make Home a simple one-column stack like the other pages */
+  body[data-page="home"] .hero{
+    display:block;                 /* no side-by-side flex */
+    padding:16px;                  /* same card padding as others */
+  }
+  body[data-page="home"] .hero h1{
+    font-size:clamp(24px, 7vw, 28px);
+    line-height:1.15;
+    margin:0 0 8px;
+  }
+  body[data-page="home"] .hero .lead{
+    font-size:15px;
+    margin:6px 0 12px;
+  }
+
+  /* CTAs = full-width buttons (like Today’s list items) */
+  body[data-page="home"] .cta-row{
+    display:grid; grid-template-columns:1fr; gap:8px;
+  }
+  body[data-page="home"] .cta{ width:100%; text-align:center; }
+
+  /* 2) Cards/sections use the same rhythm */
+  body[data-page="home"] main.container > .card{ margin-top: var(--gap); }
+  body[data-page="home"] main.container > :first-child{ margin-top:0; }
+
+  /* 3) Snapshots = single column, compact type like other cards */
+  .snapshots-grid{ grid-template-columns:1fr; gap:12px; }
+  .snapshot-card{ padding:14px; }
+  .snapshot-value{ font-size:24px; line-height:1.1; }
+  .snapshot-label{ margin-top:4px; }
+
+  /* 4) Mini-timeline: NOT horizontal on phones — same as grid cards */
+  .mini-timeline{ overflow:visible; }
+  .mini-tl{
+    display:grid; grid-template-columns:1fr; gap:12px;
+    padding:0; margin:0;
+  }
+  .mini-tl-item{
+    width:100%; max-width:100%; min-width:0;
+    padding:12px; border-radius:12px;
+  }
+
+  /* 5) ISPs and “Did you know?” lists = single column */
+  .isp-grid{ grid-template-columns:1fr; gap:12px; }
+  .isp-card{ padding:12px; }
+
+  /* 6) iOS text/flex safety so nothing leaks off screen */
+  .card, .card *{ min-width:0; overflow-wrap:anywhere; word-break:normal; }
+  html, body{ overflow-x:hidden; } /* harmless once leaks are fixed */
+  header.navbar .container{ flex-wrap:nowrap; overflow:hidden; }
+  header.navbar a{ white-space:nowrap; }
+  @media (hover:none) and (pointer:coarse){ .nav-ticker{ display:none !important; } }
+}
+
