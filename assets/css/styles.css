@@ -261,3 +261,47 @@ body[data-page="today"]    main.container > .card      { margin-top:0; }
 html, body { overflow-x:hidden; }
 img, canvas, svg, video { max-width:100%; height:auto; }
 html { -webkit-text-size-adjust: 100%; }
+
+/* ===== DESKTOP RESTORE (≥901px) ===== */
+@media (min-width:901px){
+  /* Put links on the left, ticker on the far right, keep underline free */
+  header.navbar .container{
+    display:flex;               /* explicit to override any inherited styles */
+    align-items:center;
+    justify-content:flex-start; /* links stay left-aligned */
+    gap:28px;
+    position:relative;
+    flex-wrap:nowrap;           /* keep a single row */
+    overflow:visible;           /* allow sliding underline to move */
+    min-height:56px;
+  }
+
+  /* Ensure links appear before the ticker */
+  .navbar a{ order:1; }
+  .nav-ticker{
+    order:2;
+    margin-left:auto;           /* push ticker to the right edge */
+    display:flex !important;
+  }
+}
+
+/* Hide ticker only on phones/tablets or when narrow; keep it on desktop */
+@media (hover:none) and (pointer:coarse){
+  .nav-ticker{ display:none !important; }
+}
+@media (max-width:900px){
+  .nav-ticker{ display:none !important; }
+}
+
+/* Make sure the sliding underline isn’t clipped and sits above the bar */
+.nav-underline{ z-index:1; }
+
+/* ===== TIMELINE GRID FIX ===== */
+/* Some builds render the timeline as a UL. Remove bullets and force grid. */
+.tl-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap);
+  list-style:none; padding-left:0; margin:0;
+}
+@media (max-width:1200px){ .tl-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:760px){  .tl-grid{ grid-template-columns:1fr; } }
+
