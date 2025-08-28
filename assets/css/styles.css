@@ -313,3 +313,60 @@ body[data-page="today"] main.container > .card {
 body[data-page="today"] main.container > :first-child {
   margin-top: 0;
 }
+
+/* ===================== MOBILE COMPACT LAYOUT (Home + global) ===================== */
+@media (max-width: 600px){
+  /* Tighter global rhythm on small screens */
+  :root{
+    --gap:16px;           /* was 24px */
+    --radius:14px;
+    --radius-sm:10px;
+  }
+  .container{ padding:16px; }          /* was 24px */
+  main.container{
+    padding-top:16px;
+    padding-bottom:16px;
+  }
+
+  /* Headings */
+  h1{ font-size:32px; margin:18px 0 12px; }
+  h2{ font-size:20px; }
+  h3{ font-size:16px; }
+
+  /* Cards & common blocks */
+  .card{ padding:16px; border-radius:14px; }
+  .grid{ grid-template-columns:1fr; }   /* safety: force single column where needed */
+
+  /* ---- Home: hero ---- */
+  .hero{ padding:18px; gap:14px; }
+  .hero .lead{ font-size:15px; margin:6px 0 12px; }
+  .cta-row{ gap:8px; }
+  .cta{ padding:8px 12px; border-radius:8px; }
+
+  /* ---- Home: snapshots ---- */
+  .snapshots-grid{ grid-template-columns:1fr; gap:12px; }
+  .snapshot-card{ padding:14px; }
+  .snapshot-value{ font-size:28px; }
+  .snapshot-label{ margin-top:4px; }
+
+  /* ---- Home: mini timeline (horizontal scroller) ---- */
+  .mini-tl{ gap:12px; padding:2px 0; }
+  .mini-tl-item{
+    min-width:85vw;       /* show one card almost full-width */
+    max-width:90vw;
+    padding:10px;
+  }
+  .mini-tl-item .pill{ font-size:13px; }
+
+  /* ---- Home: ISP grid ---- */
+  .isp-grid{ grid-template-columns:1fr; gap:12px; } /* was 2 columns on all sizes */
+  .isp-card{ padding:12px; }
+  .isp-logo{ --logo-size:40px; }
+
+  /* ---- Today page spacing to match other pages ---- */
+  body[data-page="today"] main.container > .card{ margin-top: var(--gap); }
+  body[data-page="today"] main.container > :first-child{ margin-top:0; }
+
+  /* ---- Footer breathing room (bottom gap matches top) ---- */
+  main.container > :last-child{ margin-bottom:0; }
+}
