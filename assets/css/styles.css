@@ -366,3 +366,43 @@ a[href]{
 @media (hover:none) and (pointer:coarse){
   a:focus, a:active { outline: none !important; }
 }
+
+/* ===== Safari/mobile fixes (append at end of file) ===== */
+
+/* 1) Only show outlines for real keyboard focus, never for taps */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+[tabindex]:focus:not(:focus-visible){
+  outline: none;
+}
+
+/* On touch devices (iOS Safari included), suppress all outlines on tap */
+@media (hover:none) and (pointer:coarse){
+  a:focus, a:focus-visible, a:active,
+  button:focus, button:focus-visible, button:active,
+  [tabindex]:focus, [tabindex]:focus-visible {
+    outline: none !important;
+  }
+  /* iOS sometimes draws its own highlight; remove it */
+  a, button { -webkit-tap-highlight-color: transparent; }
+}
+
+/* 2) Make taps register reliably inside cards in Safari */
+.card{ isolation:isolate; }                    /* keep children above surrounding layers */
+.sources a,
+.sources-list a{
+  position: relative;
+  z-index: 2;                                  /* lift links above any hover/transform layer */
+  touch-action: manipulation;                  /* treat taps as clicks */
+  pointer-events: auto;
+  cursor: pointer;
+  -webkit-touch-callout: default;              /* allow normal tap behavior */
+}
+
+/* If any ancestor uses transforms, ensure the link forms its own layer */
+.sources a,
+.sources-list a{
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
