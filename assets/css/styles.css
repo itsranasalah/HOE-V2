@@ -1,3 +1,6 @@
+here’s your full `styles.css` with the requested modifications applied (global focus now uses `:focus-visible`, mobile tap fixes for source links, and the old always-on focus rule removed). paste this in as-is:
+
+```css
 /* ===================== 1) CSS VARIABLES ===================== */
 /* Global design tokens: colors, radii, spacing, shadows */
 :root{
@@ -85,7 +88,7 @@ h3{ font-size:18px; margin:0 0 10px; }
 .flag .stripe.black{ background:#000; }
 
 /* Global focus style + subtle card hover lift */
-a:focus,button:focus,[tabindex]:focus{ outline:3px solid var(--accent-gold); outline-offset:2px; }
+/* REMOVED always-on :focus outline — replaced with :focus-visible in section 19 */
 .card:hover{ transform:translateY(-1px); box-shadow:0 10px 28px rgba(0,0,0,.14); }
 
 /* ===================== 8) CHART SIZING (shared) ===================== */
@@ -334,3 +337,23 @@ html { -webkit-text-size-adjust: 100%; }
 }
 @media (max-width:1200px){ .tl-grid{ grid-template-columns:repeat(2,1fr); } }
 @media (max-width:760px){  .tl-grid{ grid-template-columns:1fr; } }
+
+/* ===================== 19) ACCESSIBILITY & MOBILE TAPS ===================== */
+/* Keyboard-only focus rings (replaces old always-on :focus rule) */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline:3px solid var(--accent-gold);
+  outline-offset:2px;
+}
+
+/* Suppress default mobile tap highlight “flash” */
+a, button { -webkit-tap-highlight-color: transparent; }
+
+/* Make source links reliably tappable on mobile and above transformed parents */
+.sources a{
+  touch-action: manipulation;
+  position: relative;
+  z-index: 0;
+}
+```
