@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=7">
+  <link rel="stylesheet" href="assets/css/styles.css?v=8">
 
   <!-- App libs & code -->
   <script defer src="js/libs/nunjucks.min.js"></script>
@@ -20,11 +20,11 @@
 </head>
 
 <body class="theme-egypt" data-page="home">
-  <!-- Skip link for keyboard users -->
-  <a class="sr-only" href="#home-hero-title">Skip to main content</a>
+  <!-- Skip link -->
+  <a class="sr-only" href="#main-content">Skip to main content</a>
 
+  <!-- Navigation -->
   <header class="navbar">
-    <!-- Native <nav> already has an implicit navigation role; keep aria-label for clarity -->
     <nav class="container" aria-label="Main navigation">
       <div class="nav-ticker" aria-live="polite"></div>
       <a href="index.html" aria-current="page">Home</a>
@@ -34,6 +34,7 @@
     </nav>
   </header>
 
+  <!-- Main -->
   <main class="container" id="main-content">
     <!-- Hero -->
     <section class="hero card" aria-labelledby="home-hero-title">
@@ -49,41 +50,85 @@
       </div>
     </section>
 
+    <!-- Optional Intro Video -->
+    <section class="card" aria-labelledby="video-title">
+      <h2 id="video-title">Introduction Video</h2>
+      <video controls preload="metadata" aria-describedby="video-desc" width="100%">
+        <source src="assets/media/intro.mp4" type="video/mp4">
+        <track kind="captions" src="assets/media/intro.en.vtt" srclang="en" label="English" default>
+        Sorry, your browser does not support embedded video.
+      </video>
+      <p id="video-desc">
+        Transcript: This video provides an overview of Egypt’s internet growth, infrastructure,
+        and milestones since its introduction in the 1990s.
+      </p>
+    </section>
+
     <!-- Snapshots -->
     <section class="card" aria-labelledby="snap-title">
       <h2 id="snap-title" class="sr-only">Snapshot</h2>
-      <div id="home-snapshots" class="snapshots-grid"></div>
+      <div id="home-snapshots" class="snapshots-grid">
+        <!-- Example snapshot -->
+        <div class="snapshot-card">
+          <span class="snapshot-value">≈58%</span>
+          <h3 class="snapshot-label">People online (2025)</h3>
+          <p class="snapshot-caption">Share of total population</p>
+        </div>
+      </div>
     </section>
 
     <!-- Milestones at a glance -->
     <section class="card" aria-labelledby="glance-title">
       <h2 id="glance-title">Milestones at a glance</h2>
       <div class="mini-timeline">
-        <ul id="mini-tl" class="mini-tl"></ul>
+        <ul id="mini-tl" class="mini-tl">
+          <li class="mini-tl-item">
+            <span class="pill">1993</span>
+            <h3 class="mini-tl-title">Egypt joins the Internet</h3>
+            <p class="mini-tl-text">The first internet connection established for research and education.</p>
+          </li>
+        </ul>
       </div>
     </section>
 
     <!-- ISPs -->
     <section class="card" aria-labelledby="isps-title">
       <h2 id="isps-title">Internet Service Providers</h2>
-      <div id="isp-grid" class="isp-grid"></div>
+      <div id="isp-grid" class="isp-grid">
+        <div class="isp-card">
+          <div class="isp-logo logo-vodafone"><img src="assets/img/vodafone.png" alt="Vodafone logo"></div>
+          <div>
+            <h3 class="isp-name">Vodafone Egypt</h3>
+            <p class="isp-speed">Average speed: 40 Mbps</p>
+            <p class="isp-price">Typical package: 200 EGP/month</p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Did you know -->
     <section class="card" aria-labelledby="facts-title">
       <h2 id="facts-title">Did you know?</h2>
-      <div id="facts-grid" class="facts-grid"></div>
+      <div id="facts-grid" class="facts-grid">
+        <div class="fact-card">
+          <div class="fact-dot"></div>
+          <div>
+            <h3 class="fact-title">Egypt ranks 2nd in Africa</h3>
+            <p class="fact-text">Based on number of active internet users.</p>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <!-- Footer landmark; no extra role needed -->
+  <!-- Footer -->
   <footer class="flag" aria-label="Egypt flag stripes">
     <div class="stripe red"></div>
     <div class="stripe white"></div>
     <div class="stripe black"></div>
   </footer>
 
-  <!-- Optional: lightweight data validator (run via ?validate=1) -->
+  <!-- Lightweight validator -->
   <script src="js/validate.js"></script>
   <script>
     if (location.search.includes('validate=1') && window.validator) {
