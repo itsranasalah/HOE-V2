@@ -4,22 +4,28 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>The Internet in Egypt — Home</title>
+  <meta name="description" content="How Egyptians came online, how we connect today, and where access is heading.">
 
   <!-- Favicon & fonts -->
   <link rel="icon" type="image/png" href="assets/img/egypt.png">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-<link rel="stylesheet" href="assets/css/styles.css?v=7">
+  <link rel="stylesheet" href="assets/css/styles.css?v=7">
 
   <!-- App libs & code -->
   <script defer src="js/libs/nunjucks.min.js"></script>
   <script defer src="js/data.js"></script>
   <script defer src="js/main.js"></script>
 </head>
+
 <body class="theme-egypt" data-page="home">
+  <!-- Skip link for keyboard users -->
+  <a class="sr-only" href="#home-hero-title">Skip to main content</a>
+
   <header class="navbar">
-    <nav class="container" aria-label="Main">
+    <!-- Native <nav> already has an implicit navigation role; keep aria-label for clarity -->
+    <nav class="container" aria-label="Main navigation">
       <div class="nav-ticker" aria-live="polite"></div>
       <a href="index.html" aria-current="page">Home</a>
       <a href="timeline.html">Timeline</a>
@@ -28,7 +34,7 @@
     </nav>
   </header>
 
-  <main class="container">
+  <main class="container" id="main-content">
     <!-- Hero -->
     <section class="hero card" aria-labelledby="home-hero-title">
       <div>
@@ -70,13 +76,14 @@
     </section>
   </main>
 
+  <!-- Footer landmark; no extra role needed -->
   <footer class="flag" aria-label="Egypt flag stripes">
     <div class="stripe red"></div>
     <div class="stripe white"></div>
     <div class="stripe black"></div>
   </footer>
 
-  <!-- Lightweight data validator (load once, run via ?validate=1) -->
+  <!-- Optional: lightweight data validator (run via ?validate=1) -->
   <script src="js/validate.js"></script>
   <script>
     if (location.search.includes('validate=1') && window.validator) {
@@ -85,4 +92,3 @@
   </script>
 </body>
 </html>
-
