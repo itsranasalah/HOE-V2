@@ -4,28 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>The Internet in Egypt — Home</title>
-  <meta name="description" content="How Egyptians came online, how we connect today, and where access is heading.">
 
   <!-- Favicon & fonts -->
   <link rel="icon" type="image/png" href="assets/img/egypt.png">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=8">
+<link rel="stylesheet" href="assets/css/styles.css?v=7">
 
   <!-- App libs & code -->
   <script defer src="js/libs/nunjucks.min.js"></script>
   <script defer src="js/data.js"></script>
   <script defer src="js/main.js"></script>
 </head>
-
 <body class="theme-egypt" data-page="home">
-  <!-- Skip link -->
-  <a class="sr-only" href="#main-content">Skip to main content</a>
-
-  <!-- Navigation -->
   <header class="navbar">
-    <nav class="container" aria-label="Main navigation">
+    <nav class="container" aria-label="Main">
       <div class="nav-ticker" aria-live="polite"></div>
       <a href="index.html" aria-current="page">Home</a>
       <a href="timeline.html">Timeline</a>
@@ -34,8 +28,7 @@
     </nav>
   </header>
 
-  <!-- Main -->
-  <main class="container" id="main-content">
+  <main class="container">
     <!-- Hero -->
     <section class="hero card" aria-labelledby="home-hero-title">
       <div>
@@ -50,85 +43,40 @@
       </div>
     </section>
 
-    <!-- Optional Intro Video -->
-    <section class="card" aria-labelledby="video-title">
-      <h2 id="video-title">Introduction Video</h2>
-      <video controls preload="metadata" aria-describedby="video-desc" width="100%">
-        <source src="assets/media/intro.mp4" type="video/mp4">
-        <track kind="captions" src="assets/media/intro.en.vtt" srclang="en" label="English" default>
-        Sorry, your browser does not support embedded video.
-      </video>
-      <p id="video-desc">
-        Transcript: This video provides an overview of Egypt’s internet growth, infrastructure,
-        and milestones since its introduction in the 1990s.
-      </p>
-    </section>
-
     <!-- Snapshots -->
     <section class="card" aria-labelledby="snap-title">
       <h2 id="snap-title" class="sr-only">Snapshot</h2>
-      <div id="home-snapshots" class="snapshots-grid">
-        <!-- Example snapshot -->
-        <div class="snapshot-card">
-          <span class="snapshot-value">≈58%</span>
-          <h3 class="snapshot-label">People online (2025)</h3>
-          <p class="snapshot-caption">Share of total population</p>
-        </div>
-      </div>
+      <div id="home-snapshots" class="snapshots-grid"></div>
     </section>
 
     <!-- Milestones at a glance -->
     <section class="card" aria-labelledby="glance-title">
       <h2 id="glance-title">Milestones at a glance</h2>
       <div class="mini-timeline">
-        <ul id="mini-tl" class="mini-tl">
-          <li class="mini-tl-item">
-            <span class="pill">1993</span>
-            <h3 class="mini-tl-title">Egypt joins the Internet</h3>
-            <p class="mini-tl-text">The first internet connection established for research and education.</p>
-          </li>
-        </ul>
+        <ul id="mini-tl" class="mini-tl"></ul>
       </div>
     </section>
 
     <!-- ISPs -->
     <section class="card" aria-labelledby="isps-title">
       <h2 id="isps-title">Internet Service Providers</h2>
-      <div id="isp-grid" class="isp-grid">
-        <div class="isp-card">
-          <div class="isp-logo logo-vodafone"><img src="assets/img/vodafone.png" alt="Vodafone logo"></div>
-          <div>
-            <h3 class="isp-name">Vodafone Egypt</h3>
-            <p class="isp-speed">Average speed: 40 Mbps</p>
-            <p class="isp-price">Typical package: 200 EGP/month</p>
-          </div>
-        </div>
-      </div>
+      <div id="isp-grid" class="isp-grid"></div>
     </section>
 
     <!-- Did you know -->
     <section class="card" aria-labelledby="facts-title">
       <h2 id="facts-title">Did you know?</h2>
-      <div id="facts-grid" class="facts-grid">
-        <div class="fact-card">
-          <div class="fact-dot"></div>
-          <div>
-            <h3 class="fact-title">Egypt ranks 2nd in Africa</h3>
-            <p class="fact-text">Based on number of active internet users.</p>
-          </div>
-        </div>
-      </div>
+      <div id="facts-grid" class="facts-grid"></div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="flag" aria-label="Egypt flag stripes">
     <div class="stripe red"></div>
     <div class="stripe white"></div>
     <div class="stripe black"></div>
   </footer>
 
-  <!-- Lightweight validator -->
+  <!-- Lightweight data validator (load once, run via ?validate=1) -->
   <script src="js/validate.js"></script>
   <script>
     if (location.search.includes('validate=1') && window.validator) {
