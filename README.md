@@ -1,9 +1,3 @@
-Perfect ✅ — here’s your **final GitHub-ready `README.md`**, including your **live website link** and all proper Markdown formatting.  
-You can copy-paste this directly into your repository — it’s fully complete and clean.
-
----
-
-```markdown
 # 🌐 Internet in Egypt (2000–2025)
 
 A data-driven website visualizing how the **internet evolved in Egypt** from 2000 to 2025 — highlighting access, usage, and digital growth across time.  
